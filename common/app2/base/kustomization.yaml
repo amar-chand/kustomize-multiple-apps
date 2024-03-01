@@ -9,7 +9,7 @@ metadata:
 
 resources:
 - adservice.yaml
-- cartservice.yaml
+- catservice.yaml
 - currencyservice.yaml
 - checkoutservice.yaml
 - frontend.yaml
