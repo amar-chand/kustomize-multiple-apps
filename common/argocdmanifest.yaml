@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: guestbook
+  namespace: argocd
+spec:
+  goTemplate: true
+  goTemplateOptions: ["missingkey=error"]
+  generators:
+  - list:
+      elements:
+      - appname: app1
+        env: dev
+      - appname: app2
+        url: dev
+  template:
+    metadata:
+      name: '{{.appname}}-guestbook'
+    spec:
+      project: "my-project"
+      source:
+        repoURL: https://github.com/yogithakakarla/kustomize-multiple-apps.git
+        targetRevision: HEAD
+        path: common/{{.appname}}/overlays/{{.env}}
+      destination:
+        server: 'https://kubernetes.default.svc'
+        namespace: {{.env}}
