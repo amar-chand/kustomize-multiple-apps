@@ -2,5 +2,5 @@
 resources:
 - ../../base
 
-nameSuffix: app2-dev
+nameSuffix: -app2-dev
 namespace: dev-app2
