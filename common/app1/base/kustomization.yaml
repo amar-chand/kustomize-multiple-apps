@@ -7,7 +7,7 @@ commonLabels:
   app: kustomize-app
   owner: Yogitha
 
-namePrefix: kodekloud
+namePrefix: app1-
 
 resources:
-- adservice.yaml
+- app1-dep-svc.yaml
