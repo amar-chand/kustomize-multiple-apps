@@ -12,7 +12,7 @@ spec:
       - appname: app1
         env: dev
       - appname: app2
-        url: dev
+        env: dev
   template:
     metadata:
       name: '{{.appname}}-guestbook'
@@ -24,4 +24,4 @@ spec:
         path: common/{{.appname}}/overlays/{{.env}}
       destination:
         server: 'https://kubernetes.default.svc'
-        namespace: {{.env}}
+        namespace: '{{.env}}'
