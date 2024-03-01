@@ -3,9 +3,7 @@ kind: Kustomization
 metadata:
   name: Kustomize-app
 
-commonLabels:
-  app: kustomize-app
-  owner: Yogitha
+
 
 namePrefix: app1-
 
