@@ -13,8 +13,11 @@ spec:
       - list:
           elements:
           - appname: app1 
-          - appname: app2  
-          - appname: helmchart
+            wave: 3
+          
+          - appname: app2 
+            wave: 2
+     
       - list:
           elements:
           - env: dev
@@ -24,6 +27,8 @@ spec:
   template:
     metadata:
       name: '{{.appname}}-guestbook-{{.env}}'
+      annotations:
+        argocd.argoproj.io/sync-wave: "{{.wave}}"
     spec:
       project: default
       source:
