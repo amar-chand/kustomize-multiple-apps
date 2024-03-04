@@ -18,9 +18,9 @@ spec:
   {{- end }}
   template:
     metadata:
-      name: "{{ .appnameargo }}{{ .envargo }}"
+      name: "\{{ .appnameargo }}\{{ .envargo }}"
       annotations:
-        argocd.argoproj.io/sync-wave: '{{.waveargo}}'
+        argocd.argoproj.io/sync-wave: '\{{.waveargo}}'
         argocd.argoproj.io/sync-options: ApplyOnly=true
     spec:
       syncPolicy:
@@ -31,8 +31,8 @@ spec:
       source:
         repoURL: https://github.com/yogithakakarla/kustomize-multiple-apps.git
         targetRevision: HEAD
-        path: {{.appnameargo}}/overlays/{{.envargo}}
+        path: \{{.appnameargo}}/overlays/\{{.envargo}}
 
       destination:
-        server: '{{.serverargo}}'
-        namespace: '{{.envargo}}-{{.appnameargo}}'
+        server: '\{{.serverargo}}'
+        namespace: '\{{.envargo}}-\{{.appnameargo}}'
