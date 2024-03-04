@@ -33,7 +33,7 @@ spec:
       source:
         repoURL: https://github.com/yogithakakarla/kustomize-multiple-apps.git
         targetRevision: HEAD
-        path: "{{`{{.appnameargo}}/overlays/{{.envargo}}`}}"
+        path: "{{`common/{{.appnameargo}}/overlays/{{.envargo}}`}}"
 
       destination:
         server: "{{`{{.serverargo}}`}}"
