@@ -19,8 +19,7 @@ spec:
           elements:
           
           - env: {{ $app.env }}
-            server: {{ $app.server }}
-         
+            server: {{ $app.server }}   
   {{- end }}
   template:
     metadata:
