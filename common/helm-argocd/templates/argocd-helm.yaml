@@ -9,14 +9,12 @@ spec:
   goTemplateOptions: ["missingkey=error"]
   generators:
   {{- range $app := .Values.apps }}
-  - matrix:
-      generators:
-      - list:
-          elements:
-          - appnameargo: {{ $app.appname }}
-            waveargo: {{ $app.wave }}
-            envargo: {{ $app.env }}
-            serverargo: {{ $app.server }}   
+  - list:
+      elements:
+      - appnameargo: {{ $app.appname }}
+        waveargo: {{ $app.wave }}
+        envargo: {{ $app.env }}
+        serverargo: {{ $app.server }}   
   {{- end }}
   template:
     metadata:
