@@ -10,11 +10,13 @@ spec:
   generators:  
   - list:
       elements:
-      {{- range .Values.apps }}
-      - appnameargo: {{ .appname }}
-        waveargo: {{ .wave }}
-        envargo: {{ .env }}
-        serverargo: {{ .server }}   
+      {{- range $app := .Values.apps }}
+      {{- range $appname, $appconfig  := $app }}
+      - appnameargo: {{ $appname }}
+        waveargo: {{ $appconfig.wave }}
+        envargo: {{ $appconfig.env }}
+        serverargo: {{ $appconfig..server }}   
+      {{- end }}
       {{- end }}
   template:
     metadata:
