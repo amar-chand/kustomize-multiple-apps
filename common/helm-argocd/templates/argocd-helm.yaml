@@ -17,9 +17,9 @@ spec:
             wave: {{ $app.wave }}
       - list:
           elements:
-          {{- range $cluster := $.Values.clusters }}
+          
           - env: {{ $app.env }}
-            server: {{ index $cluster $app.env }}
+            server: {{ $app.server }}
           {{- end }}
   {{- end }}
   template:
