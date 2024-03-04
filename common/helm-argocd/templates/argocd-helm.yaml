@@ -1,4 +1,4 @@
-
+# templates/applicationset.yaml
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
@@ -8,20 +8,18 @@ spec:
   goTemplate: true
   goTemplateOptions: ["missingkey=error"]
   generators:
-  {{- range $wave, $apps := .Values }}
+  {{- range $app := .Values.apps }}
   - matrix:
       generators:
       - list:
           elements:
-          {{- range $apps }}
-          - appname: {{ .appname }}
-            wave: {{ .wave }}
-          {{- end }}
+          - appname: {{ $app.appname }}
+            wave: {{ $app.wave }}
       - list:
           elements:
-          {{- range $env := .env }}
-          - env: {{ . }}
-            server: https://kubernetes.default.svc
+          {{- range $cluster := $.Values.clusters }}
+          - env: {{ $app.env }}
+            server: {{ index $cluster 1 }}
           {{- end }}
   {{- end }}
   template:
