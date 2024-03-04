@@ -13,19 +13,18 @@ spec:
       generators:
       - list:
           elements:
-          - appname: {{ $app.appname }}
-            wave: {{ $app.wave }}
+          - app-name: {{ $app.appname }}
+            wave-no: {{ $app.wave }}
       - list:
           elements:
-          
-          - env: {{ $app.env }}
-            server: {{ $app.server }}   
+          - env-name: {{ $app.env }}
+            server-name: {{ $app.server }}   
   {{- end }}
   template:
     metadata:
-      name: '{{.appname}}-guestbook-{{.env}}'
+      name: '{{.app-name}}-guestbook-{{.env-name}}'
       annotations:
-        argocd.argoproj.io/sync-wave: "{{.wave}}"
+        argocd.argoproj.io/sync-wave: "{{.wave-no}}"
         argocd.argoproj.io/sync-options: ApplyOnly=true
     spec:
       syncPolicy:
@@ -36,7 +35,7 @@ spec:
       source:
         repoURL: https://github.com/yogithakakarla/kustomize-multiple-apps.git
         targetRevision: HEAD
-        path: common/{{.appname}}/overlays/{{.env}}
+        path: common/{{.app-name}}/overlays/{{.env-name}}
       destination:
-        server: '{{.server}}'
-        namespace: '{{.env}}-{{.appname}}'
+        server: '{{.server-name}}'
+        namespace: '{{.env-name}}-{{.app-name}}'
