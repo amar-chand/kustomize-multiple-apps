@@ -30,9 +30,11 @@ spec:
       name: '{{.appname}}-guestbook-{{.env}}'
       annotations:
         argocd.argoproj.io/sync-wave: "{{.wave}}"
+        argocd.argoproj.io/sync-options: ApplyOnly=true
     spec:
       syncPolicy:
-        automated: {}
+        syncOptions:
+          - ApplyOutOfSyncOnly=true
       project: default
       source:
         repoURL: https://github.com/yogithakakarla/kustomize-multiple-apps.git
