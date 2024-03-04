@@ -1,1 +1,18 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+metadata:
+  name: Kustomize-helm
 
+commonLabels:
+  app: kustomize-helm
+  owner: Yogitha
+
+resources:
+
+
+helmCharts:
+  - name: prometheus
+    repo: https://prometheus-community.github.io/helm-charts
+    releaseName: prometheus-demo
+    version: 14.3.0
+    namespace: monitoring
