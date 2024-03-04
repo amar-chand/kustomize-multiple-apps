@@ -5,8 +5,7 @@ metadata:
   name: guestboo1k
   namespace: argocd
 spec:
-  syncPolicy:
-    automated: {}
+  
   goTemplate: true
   goTemplateOptions: ["missingkey=error"]
   generators:
@@ -32,6 +31,8 @@ spec:
       annotations:
         argocd.argoproj.io/sync-wave: "{{.wave}}"
     spec:
+      syncPolicy:
+        automated: {}
       project: default
       source:
         repoURL: https://github.com/yogithakakarla/kustomize-multiple-apps.git
