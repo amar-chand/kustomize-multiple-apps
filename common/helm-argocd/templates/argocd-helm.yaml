@@ -19,7 +19,7 @@ spec:
           elements:
           {{- range $cluster := $.Values.clusters }}
           - env: {{ $app.env }}
-            server: {{ index $cluster 1 }}
+            server: {{ index $cluster $app.env }}
           {{- end }}
   {{- end }}
   template:
