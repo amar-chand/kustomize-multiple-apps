@@ -26,6 +26,9 @@ spec:
         argocd.argoproj.io/sync-options: ApplyOnly=true
     spec:
       syncPolicy:
+        automated: 
+          prune: true
+          selfHeal: true
         syncOptions:
           - ApplyOutOfSyncOnly=true
           - ApplyOnly=true
