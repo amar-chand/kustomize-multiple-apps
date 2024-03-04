@@ -7,15 +7,15 @@ metadata:
 spec:
   goTemplate: true
   goTemplateOptions: ["missingkey=error"]
-  generators:
-  {{- range $app := .Values.apps }}
+  generators:  
   - list:
       elements:
+      {{- range $app := .Values.apps }}
       - appnameargo: {{ $app.appname }}
         waveargo: {{ $app.wave }}
         envargo: {{ $app.env }}
         serverargo: {{ $app.server }}   
-  {{- end }}
+      {{- end }}
   template:
     metadata:
       name: "{{`{{ .appnameargo }}{{ .envargo }}`}}"
