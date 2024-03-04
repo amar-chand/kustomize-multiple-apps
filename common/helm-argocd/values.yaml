@@ -1,1 +1,18 @@
 
+name: guestbook
+namespace: argocd
+apps:
+  - app1:
+      appname: app1
+      wave: 3
+      env: dev
+     
+  - app2:
+      appname: app2
+      wave: 2
+      env: dev
+
+clusters:
+  - dev: https://kubernetes.default.svc
+  - prod: https://kubernetes.default.svc
+
