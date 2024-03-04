@@ -22,9 +22,7 @@ spec:
   {{- end }}
   template:
     metadata:
-      {{range $i := until 5}}
-      name: 'app-$i'
-      {{- end }}
+      name: "{{.appnameargo}}-{{.envargo}}"
       annotations:
         argocd.argoproj.io/sync-wave: '{{.waveargo}}'
         argocd.argoproj.io/sync-options: ApplyOnly=true
