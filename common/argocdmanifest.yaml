@@ -7,21 +7,27 @@ spec:
   goTemplate: true
   goTemplateOptions: ["missingkey=error"]
   generators:
-  - list:
-      elements:
-      - appname: app1
-        env: dev
-      - appname: app2
-        env: dev
+  - matrix:
+      generators:
+      - list:
+          elements:
+          - appname: app1 
+          - appname: app2   
+      - list:
+          elements:
+          - env: dev
+            server: https://kubernetes.default.svc
+          - env: prod
+            server: https://kubernetes.default.svc
   template:
     metadata:
       name: '{{.appname}}-guestbook'
     spec:
-      project: "my-project"
+      project: default
       source:
         repoURL: https://github.com/yogithakakarla/kustomize-multiple-apps.git
         targetRevision: HEAD
         path: common/{{.appname}}/overlays/{{.env}}
       destination:
-        server: 'https://kubernetes.default.svc'
+        server: '{{.server}}'
         namespace: '{{.env}}'
