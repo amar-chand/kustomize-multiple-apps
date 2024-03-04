@@ -15,9 +15,7 @@ spec:
           elements:
           - appnameargo: {{ $app.appname }}
             waveargo: {{ $app.wave }}
-      - list:
-          elements:
-          - envargo: {{ $app.env }}
+            envargo: {{ $app.env }}
             serverargo: {{ $app.server }}   
   {{- end }}
   template:
