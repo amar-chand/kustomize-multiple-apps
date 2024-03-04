@@ -1,7 +1,8 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: guestbook
+
+  name: guestboo1k
   namespace: argocd
 spec:
   goTemplate: true
@@ -21,7 +22,7 @@ spec:
             server: https://kubernetes.default.svc
   template:
     metadata:
-      name: '{{.appname}}-guestbook'
+      name: '{{.appname}}-guestbook-{{.env}}'
     spec:
       project: default
       source:
@@ -30,4 +31,4 @@ spec:
         path: common/{{.appname}}/overlays/{{.env}}
       destination:
         server: '{{.server}}'
-        namespace: '{{.env}}'
+        namespace: '{{.env}}-{{.appname}}'
