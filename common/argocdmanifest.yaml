@@ -13,7 +13,8 @@ spec:
       - list:
           elements:
           - appname: app1 
-          - appname: app2   
+          - appname: app2  
+          - appname: helmchart
       - list:
           elements:
           - env: dev
