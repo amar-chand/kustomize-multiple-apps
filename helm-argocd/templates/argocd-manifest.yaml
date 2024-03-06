@@ -33,10 +33,17 @@ spec:
           - ApplyOutOfSyncOnly=true
           - ApplyOnly=true
       project: default
-      source:
-        repoURL: https://github.com/yogithakakarla/kustomize-multiple-apps.git
-        targetRevision: HEAD
-        path: "{{`common/{{.appnameargo}}/overlays/{{.envargo}}`}}"
+      sources:
+        - repoURL: https://github.com/yogithakakarla/kustomize-multiple-apps.git
+          targetRevision: HEAD
+          path: "{{`common/*/overlays/{{.envargo}}`}}"
+        
+        - repoURL: https://github.com/yogithakakarla/kustomize-multiple-apps.git
+          targetRevision: HEAD
+          path: "{{`{{.envargo}}/load-generator-app/base`}}"
+        
+         
+        
 
       destination:
         server: "{{`{{.serverargo}}`}}"
