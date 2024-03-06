@@ -10,19 +10,18 @@ spec:
   generators:  
   - list:
       elements:
-      {{- range $applist := .Values.apps }}
-      {{- range $app, $appconfig  := $applist }}
-      - appnameargo: {{ $appconfig.appname }}
-        waveargo: {{ $appconfig.wave }}
-        envargo: {{ $appconfig.env }}
-        serverargo: {{ $appconfig.server }}   
+      {{- range $index, $envlist := .Values.clusters }}
+      
+      - envargo: {{ $envlist.env }}
+        serverargo: {{ $envlist.server }}   
       {{- end }}
       {{- end }}
   template:
     metadata:
-      name: "{{`{{ .appnameargo }}{{ .envargo }}`}}"
+      
+      name: "my-app-{{ $index | add 1 }}"
       annotations:
-        argocd.argoproj.io/sync-wave: "{{`{{.waveargo}}`}}"
+        
         argocd.argoproj.io/sync-options: ApplyOnly=true
     spec:
       syncPolicy:
@@ -36,11 +35,11 @@ spec:
       sources:
         - repoURL: https://github.com/yogithakakarla/kustomize-multiple-apps.git
           targetRevision: HEAD
-          path: "{{`common/*/overlays/{{.envargo}}`}}"
+          path: "{{`common/*/overlays/{{$envlist.env}}`}}"
         
         - repoURL: https://github.com/yogithakakarla/kustomize-multiple-apps.git
           targetRevision: HEAD
-          path: "{{`{{.envargo}}/load-generator-app/base`}}"
+          path: "{{`{{$envlist.env}}/*/base`}}"
         
          
         
