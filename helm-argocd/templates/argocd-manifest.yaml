@@ -46,4 +46,4 @@ spec:
 
       destination:
         server: "{{`{{.serverargo}}`}}"
-        namespace: "{{`{{.envargo}}-{{.appnameargo}}`}}"
+        namespace: "{{`{{.envargo}}`}}"
