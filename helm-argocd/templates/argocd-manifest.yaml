@@ -35,11 +35,11 @@ spec:
       sources:
         - repoURL: https://github.com/yogithakakarla/kustomize-multiple-apps.git
           targetRevision: HEAD
-          path: "{{`common/*/overlays/{{$envlist.env}}`}}"
+          path: "{{`common/*/overlays/{{.envargo}}`}}"
         
         - repoURL: https://github.com/yogithakakarla/kustomize-multiple-apps.git
           targetRevision: HEAD
-          path: "{{`{{$envlist.env}}/*/base`}}"
+          path: "{{`{{.envargo}}/*/base`}}"
         
          
         
