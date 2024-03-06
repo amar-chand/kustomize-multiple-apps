@@ -1,5 +1,5 @@
 #
-name: guestbook
+name: projectone
 namespace: argocd
 #apps:
 #- app1:
@@ -15,5 +15,7 @@ namespace: argocd
 #    server: https://kubernetes.default.svc
 
 clusters:
-  - dev: https://kubernetes.default.svc
-  - prod: https://kubernetes.default.svc
+  - env: dev
+    server: https://kubernetes.default.svc
+  - env: prod
+    server: https://kubernetes.default.svc
